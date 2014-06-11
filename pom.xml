@@ -12,8 +12,28 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.0.2.RELEASE</version>
     </parent>
-
+	<properties>
+		<java.version>1.7</java.version>
+		<start-class>bootiful.Application</start-class>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.postgresql</groupId>
+        		<artifactId>postgresql</artifactId>
+        		<version>9.3-1101-jdbc41</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
     <dependencies>
+    	<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.postgresql</groupId>
+        	<artifactId>postgresql</artifactId>
+        </dependency>
 	    <!-- tag::jetty[] -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -37,10 +57,6 @@
         </dependency>
         <!-- end::actuator[] -->
     </dependencies>
-
-    <properties>
-        <start-class>bootiful.Application</start-class>
-    </properties>
 
     <build>
         <plugins>
