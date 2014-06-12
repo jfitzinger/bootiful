@@ -16,28 +16,10 @@ public class Application {
 	private static final String DATABASE_URL_PROPERTY = "database.url";
 
 	public static void main(String[] args) throws URISyntaxException {
-		checkAndCorrectDatabaseUrl();
+		System.setProperty(DATABASE_URL_PROPERTY,DatabaseUrlFormatter.getInstance()
+				.checkAndCorrect(System.getProperty(DATABASE_URL_PROPERTY)));
 		SpringApplication.run(Application.class, args);
 	}
 
-	private static void checkAndCorrectDatabaseUrl() throws URISyntaxException {
-		String url = System.getProperty(DATABASE_URL_PROPERTY);
-		if (url!=null && isHerokuPostgres(url)) {
-			System.setProperty(DATABASE_URL_PROPERTY, reformatHerokuPostgresUrl(new URI(url)));
-		}
-	}
-
-	private static boolean isHerokuPostgres(String url) {
-		return url.startsWith("postgres");
-	}
-
-	private static String reformatHerokuPostgresUrl(URI url) {
-		StringBuffer correctUrl = new StringBuffer("jdbc:postgresql://");
-		correctUrl.append(url.getHost()).append(':').append(url.getPort());
-		correctUrl.append(url.getPath()).append("?username=")
-				.append(url.getUserInfo().split(":")[0]);
-		correctUrl.append("?password=").append(url.getUserInfo().split(":")[1]);
-		return correctUrl.toString();
-	}
 
 }
