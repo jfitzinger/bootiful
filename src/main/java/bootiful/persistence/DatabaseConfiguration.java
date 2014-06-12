@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DbConfig {
+public class DatabaseConfiguration {
 
 	private static final String DATABASE_URL_PROPERTY = "DATABASE_URL";
 
