@@ -56,6 +56,10 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <!-- end::actuator[] -->
+        <dependency>
+        	<groupId>commons-dbcp</groupId>
+        	<artifactId>commons-dbcp</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
