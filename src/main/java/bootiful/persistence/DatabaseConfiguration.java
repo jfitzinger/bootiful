@@ -40,21 +40,20 @@ public class DatabaseConfiguration {
 		if (url == null) {
 			throw new DatabaseConfigurationException(
 					String.format(
-							"No Database Url was provided in environement variable '%s'",
-							url, DATABASE_URL_PROPERTY));
+							"No database url from environement variable '%s'",DATABASE_URL_PROPERTY));
 		}
 		try {
 			dbUri = new URI(url);
 		} catch (URISyntaxException e) {
 			throw new DatabaseConfigurationException(
 					String.format(
-							"Error parsing DB URL  provided in environement variable '%s'",
+							"Error parsing database url '%s' from environement variable '%s'",
 							url, DATABASE_URL_PROPERTY), e);
 		}
 		if (dbUri.getUserInfo() == null) {
 			throw new DatabaseConfigurationException(
 					String.format(
-							"Error parsing DB URL  provided in environement variable '%s'",
+							"Error parsing database url '%s' from environement variable '%s' - no user information provided",
 							url, DATABASE_URL_PROPERTY));
 
 		}
