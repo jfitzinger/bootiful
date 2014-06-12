@@ -31,13 +31,13 @@ public class DatabaseUrlFormatter {
 	}
 
 	private static String reformatHerokuPostgresUrl(URI url) {
-		System.out.println("Reformating URL"+url);
+		System.out.println("Reformating URL: "+url);
 		StringBuffer correctUrl = new StringBuffer("jdbc:postgresql://");
 		correctUrl.append(url.getHost()).append(':').append(url.getPort());
 		correctUrl.append(url.getPath()).append("?username=")
 				.append(url.getUserInfo().split(":")[0]);
 		correctUrl.append("&password=").append(url.getUserInfo().split(":")[1]);
-		System.out.println("Reformated URL"+url);
+		System.out.println("Reformated URL: "+correctUrl);
 		return correctUrl.toString();
 	}
 

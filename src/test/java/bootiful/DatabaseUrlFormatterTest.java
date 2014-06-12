@@ -13,11 +13,11 @@ public class DatabaseUrlFormatterTest {
 	@Test
 	public void shouldReturnCorrectJdbcUrl() throws URISyntaxException {
 		//given
-		String wrongFormatUrl="postgres://foo:foo1@heroku.com:5432/hellodb";
+		String wrongFormatUrl="postgres://rtpnrbwuwoawce:N_aN1FeUn90KA7uAIvtVl5XFpn@ec2-54-204-41-249.compute-1.amazonaws.com:5432/d7dhhf1dqfbjdg";
 		//when
 		String reformatedActual = databaseUrlFormatter.checkAndCorrect(wrongFormatUrl);
 		//then
-		assertEquals("jdbc:postgresql://heroku.com:5432/hellodb?username=foo&password=foo1", reformatedActual);
+		assertEquals("jdbc:postgresql://ec2-54-204-41-249.compute-1.amazonaws.com:5432/d7dhhf1dqfbjdg?username=rtpnrbwuwoawce&password=N_aN1FeUn90KA7uAIvtVl5XFpn", reformatedActual);
 	}
 
 }
