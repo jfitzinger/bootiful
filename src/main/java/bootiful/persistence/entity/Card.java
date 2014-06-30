@@ -13,12 +13,25 @@ public class Card {
 	private String subject;
 	private String text;
 
-	protected Card() {
-	}
 
 	public Card(String subject, String text) {
 		this.subject = subject;
 		this.text = text;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	protected Card() {
 	}
 
 	@Override

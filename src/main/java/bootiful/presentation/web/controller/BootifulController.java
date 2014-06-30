@@ -3,6 +3,7 @@ package bootiful.presentation.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import bootiful.persistence.entity.Card;
@@ -21,12 +22,9 @@ public class BootifulController {
 	}
 	
 	@RequestMapping("/cards/{cardId}")
-	public String getCard(@PathVariable String cardId) {
+	public @ResponseBody Card getCard(@PathVariable String cardId) {
 		Card foundCard = cardRepository.findOne(Long.parseLong(cardId));
-		if (foundCard == null){
-			return "no card found";
-		}
-		return foundCard.toString();
+		return foundCard;
 	}
 
 }
