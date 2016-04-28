@@ -1,8 +1,12 @@
 package bootiful.presentation.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,10 +25,15 @@ public class BootifulController {
 		return "Greetings from Spring Boot!";
 	}
 	
-	@RequestMapping("/cards/{cardId}")
-	public @ResponseBody Card getCard(@PathVariable String cardId) {
+	@RequestMapping(value="/cards/{cardId}" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Card> getCard(@PathVariable String cardId) {
 		Card foundCard = cardRepository.findOne(Long.parseLong(cardId));
-		return foundCard;
+		
+		 if (foundCard == null) {
+	            System.out.println("Card with id " + cardId + " not found");
+	            return new ResponseEntity<Card>(HttpStatus.NOT_FOUND);
+	        }
+		 return new ResponseEntity<Card>(foundCard, HttpStatus.OK);
 	}
 
 }
